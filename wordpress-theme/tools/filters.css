@@ -1,0 +1,27 @@
+/* Catalogue filter sidebar (Category + Brand) */
+.skino-filter-clear { display: flex; align-items: center; gap: .4rem; padding: .7rem 1rem; font-size: .8rem; font-weight: 600; color: #DB2777; background: #fdf2f8; border-bottom: 1px solid #fce7f3; }
+.skino-filter-clear:hover { background: #fce7f3; }
+.skino-filter-group { border-bottom: 1px solid #f3f4f6; }
+.skino-filter-group:last-child { border-bottom: 0; }
+.skino-filter-group > summary { list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 1rem 1.1rem; font-weight: 700; font-size: .92rem; letter-spacing: .05em; text-transform: uppercase; color: #222; user-select: none; }
+.skino-filter-group > summary::-webkit-details-marker { display: none; }
+.skino-filter-chevron { transition: transform .2s; color: #9ca3af; }
+.skino-filter-group[open] .skino-filter-chevron { transform: rotate(180deg); }
+/* Full-height lists: the whole page scrolls, never the filter itself. */
+.skino-filter-list { list-style: none; margin: 0; padding: 0 .5rem .75rem; }
+.skino-filter-item { display: flex; align-items: center; gap: .65rem; padding: .6rem .6rem; border-radius: .5rem; font-size: .95rem; color: #374151; transition: background .15s; }
+.skino-filter-item:hover { background: #fdf2f8; color: #DB2777; }
+.skino-filter-box { width: 1.2rem; height: 1.2rem; flex-shrink: 0; border: 1.5px solid #d1d5db; border-radius: .3rem; display: inline-flex; align-items: center; justify-content: center; color: transparent; background: #fff; }
+.skino-filter-item.is-active { color: #DB2777; font-weight: 600; background: #fff7fb; }
+.skino-filter-item.is-active .skino-filter-box { background: #EC4899; border-color: #EC4899; color: #fff; }
+.skino-filter-label { flex: 1; min-width: 0; line-height: 1.3; }
+.skino-filter-count { font-size: .78rem; color: #6b7280; background: #f3f4f6; padding: .1rem .5rem; border-radius: 999px; }
+.skino-chip { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .8rem; border-radius: 999px; background: #fdf2f8; color: #DB2777; font-size: .8rem; font-weight: 600; border: 1px solid #fbcfe8; }
+.skino-chip:hover { background: #fce7f3; }
+
+/* Page numbers (sale pages output plain links; WooCommerce archives wrap them in a list) */
+nav.skino-pagination { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; }
+nav.skino-pagination .page-numbers { display: inline-flex; min-width: 2.5rem; height: 2.5rem; align-items: center; justify-content: center; padding: 0 .75rem; border: 1px solid #e5e7eb; border-radius: 999px; background: #fff; font-weight: 600; color: #374151; }
+nav.skino-pagination a.page-numbers:hover { border-color: #EC4899; color: #DB2777; }
+nav.skino-pagination .page-numbers.current { background: #EC4899; border-color: #EC4899; color: #fff; }
+nav.skino-pagination .page-numbers.dots { border: 0; background: transparent; }

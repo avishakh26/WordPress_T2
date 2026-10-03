@@ -59,12 +59,16 @@ add_filter( 'woocommerce_checkout_fields', function ( $fields ) {
 	$b['billing_first_name'] = array_merge( $b['billing_first_name'], array(
 		'label'       => __( 'Full Name', 'skino' ),
 		'placeholder' => __( 'e.g. Rahim Ahmed', 'skino' ),
+		'autocomplete' => 'name',
 		'class'       => array( 'form-row-wide' ),
 		'priority'    => 10,
 	) );
 	$b['billing_phone'] = array_merge( $b['billing_phone'], array(
 		'label'       => __( 'Phone Number', 'skino' ),
 		'placeholder' => '017XXXXXXXX',
+		'type'        => 'tel',
+		'autocomplete' => 'tel',
+		'custom_attributes' => array( 'inputmode' => 'tel' ),
 		'required'    => true,
 		'class'       => array( 'form-row-wide' ),
 		'priority'    => 20,
@@ -72,13 +76,17 @@ add_filter( 'woocommerce_checkout_fields', function ( $fields ) {
 	$b['billing_email'] = array_merge( $b['billing_email'], array(
 		'label'       => __( 'Email Address', 'skino' ),
 		'placeholder' => 'yourname@example.com',
+		'autocomplete' => 'email',
 		'required'    => true,
 		'class'       => array( 'form-row-wide' ),
 		'priority'    => 30,
 	) );
 	$b['billing_address_1'] = array_merge( $b['billing_address_1'], array(
 		'label'       => __( 'Delivery Address', 'skino' ),
-		'placeholder' => __( 'House, Road, Area, City', 'skino' ),
+		'placeholder' => __( 'House, road, area, city', 'skino' ),
+		'type'        => 'textarea',
+		'autocomplete' => 'street-address',
+		'custom_attributes' => array( 'rows' => 2 ),
 		'class'       => array( 'form-row-wide' ),
 		'priority'    => 40,
 	) );
@@ -88,8 +96,8 @@ add_filter( 'woocommerce_checkout_fields', function ( $fields ) {
 		'required' => true,
 		'class'    => array( 'form-row-wide', 'update_totals_on_change', 'skino-delivery-location' ),
 		'options'  => array(
-			'inside'  => sprintf( __( 'Inside Dhaka (delivery %s)', 'skino' ), skino_money( SKINO_DELIVERY_CHARGES['inside'] ) ),
-			'outside' => sprintf( __( 'Outside Dhaka (delivery %s)', 'skino' ), skino_money( SKINO_DELIVERY_CHARGES['outside'] ) ),
+			'inside'  => __( 'Inside Dhaka', 'skino' ),
+			'outside' => __( 'Outside Dhaka', 'skino' ),
 		),
 		'priority' => 50,
 	);
@@ -151,20 +159,56 @@ add_action( 'woocommerce_admin_order_data_after_billing_address', function ( $or
 
 // Radio fields: WooCommerce has no built-in renderer for them.
 add_filter( 'woocommerce_form_field_radio', function ( $field, $key, $args, $value ) {
-	$html = '<div class="form-row ' . esc_attr( implode( ' ', $args['class'] ) ) . '" id="' . esc_attr( $key ) . '_field"><label class="block text-sm font-medium text-gray-700 mb-2">' . esc_html( $args['label'] );
+	$eta  = array(
+		'inside'  => __( 'Arrives in 1 to 2 working days', 'skino' ),
+		'outside' => __( 'Arrives in 3 to 5 working days', 'skino' ),
+	);
+	$html = '<div class="form-row ' . esc_attr( implode( ' ', $args['class'] ) ) . '" id="' . esc_attr( $key ) . '_field"><label class="skino-field-label">' . esc_html( $args['label'] );
 	if ( ! empty( $args['required'] ) ) {
 		$html .= ' <abbr class="required" title="required">*</abbr>';
 	}
-	$html .= '</label><div class="grid grid-cols-2 gap-3">';
+	$html .= '</label><div class="skino-loc-grid" role="radiogroup">';
 	foreach ( $args['options'] as $option_value => $label ) {
-		$id       = $key . '_' . $option_value;
-		$html .= '<label for="' . esc_attr( $id ) . '" class="skino-radio-card border-2 border-gray-200 rounded-xl p-3 text-center text-sm cursor-pointer transition-all">';
+		$id    = $key . '_' . $option_value;
+		$price = isset( SKINO_DELIVERY_CHARGES[ $option_value ] ) ? skino_money( SKINO_DELIVERY_CHARGES[ $option_value ] ) : '';
+		$html .= '<label for="' . esc_attr( $id ) . '" class="skino-radio-card">';
 		$html .= '<input type="radio" class="sr-only" name="' . esc_attr( $key ) . '" id="' . esc_attr( $id ) . '" value="' . esc_attr( $option_value ) . '"' . checked( $value, $option_value, false ) . '>';
-		$html .= '<span class="font-bold">' . esc_html( $label ) . '</span></label>';
+		$html .= '<span class="skino-radio-dot" aria-hidden="true"></span>';
+		$html .= '<span class="skino-radio-text"><strong>' . esc_html( $label ) . '</strong>';
+		$html .= '<small>' . esc_html( isset( $eta[ $option_value ] ) ? $eta[ $option_value ] : '' ) . '</small></span>';
+		$html .= '<span class="skino-radio-price">' . esc_html( $price ) . '</span></label>';
 	}
 	$html .= '</div></div>';
 	return $html;
 }, 10, 4 );
+
+// Payment heading (printed once, outside the AJAX-refreshed payment block).
+add_action( 'woocommerce_review_order_before_payment', function () {
+	echo '<h2 class="skino-card-title skino-pay-title"><span class="skino-num">3</span> ' . esc_html__( 'Payment', 'skino' ) . '</h2>';
+} );
+
+// The button says what will be charged: "Place order · ৳2,429".
+add_filter( 'woocommerce_order_button_text', function ( $text ) {
+	if ( function_exists( 'WC' ) && WC()->cart ) {
+		return sprintf( __( 'Place order · %s', 'skino' ), skino_money( WC()->cart->get_total( 'edit' ) ) );
+	}
+	return $text;
+} );
+
+// Reassurance right under the button, where hesitation happens.
+add_action( 'woocommerce_review_order_after_submit', function () {
+	$points = array(
+		array( 'Banknote', __( 'Pay in cash when your order arrives', 'skino' ) ),
+		array( 'BadgeCheck', __( '100% authentic products', 'skino' ) ),
+		array( 'RotateCcw', __( '7-day easy returns', 'skino' ) ),
+	);
+	echo '<ul class="skino-assure">';
+	foreach ( $points as $p ) {
+		echo '<li>' . skino_icon( $p[0], 'w-4 h-4', 'none', false ) . ' ' . esc_html( $p[1] ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput
+	}
+	echo '</ul>';
+	echo '<p class="skino-assure-help">' . esc_html( sprintf( __( 'Need help? Call %s', 'skino' ), skino_contact( 'phone' ) ) ) . '</p>';
+} );
 
 /* ------------------------------------------------------------------ bKash gateway */
 // Themes load after plugins_loaded, so register right away when WooCommerce's gateway base class is available.

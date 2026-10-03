@@ -6,10 +6,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Catalogue pages show 24 products per page (the React app listed everything at once).
+// Catalogue pages show 16 products per page (4 x 4 on desktop); the rest are on the next pages.
 add_filter( 'loop_shop_per_page', function () {
-	return 24;
+	return SKINO_PER_PAGE;
 }, 20 );
+
+// With filters a search can narrow to one product; keep the customer on the results page instead of jumping away.
+add_filter( 'woocommerce_redirect_single_search_result', '__return_false' );
 
 // Searching from the header searches products only.
 add_action( 'pre_get_posts', function ( $query ) {
@@ -17,7 +20,7 @@ add_action( 'pre_get_posts', function ( $query ) {
 		$query->set( 'post_type', 'product' );
 	}
 	if ( ! is_admin() && $query->is_main_query() && $query->is_search() && 'product' === $query->get( 'post_type' ) ) {
-		$query->set( 'posts_per_page', 24 );
+		$query->set( 'posts_per_page', SKINO_PER_PAGE );
 	}
 } );
 

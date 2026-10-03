@@ -42,7 +42,7 @@ wordpress-theme/
 - **Product images:** the app generated SVG packshots in code. Those are saved in `skino-theme/assets/product-art/<id>.svg` and used automatically for imported products (SKU `SKINO-<id>`) that have no photo. Upload a real photo as the product image and it takes over.
 - **Home page "Best Selling" / "Latest"** now show real catalogue products (best selling = WooCommerce popularity, latest = newest) instead of the 16 hard-coded demo items.
 - **Brands in the CSV** come from the first word of the product name, exactly as in the source data (so you will see brands like "La", "The", "Urban"). Clean these in *Products > Brands* when you replace the demo catalogue.
-- Category/brand pages paginate at 24 products.
+- Category, brand and search pages show 16 products per page and the three sale pages show 20 (change `SKINO_PER_PAGE` / `SKINO_SALE_PER_PAGE` in `functions.php`).
 
 ## Rebuilding after changes
 

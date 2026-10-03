@@ -9,12 +9,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'SKINO_VERSION', '1.0.0' );
 define( 'SKINO_DIR', get_template_directory() );
 define( 'SKINO_URI', get_template_directory_uri() );
+// Products per page on category, brand, search and sale pages.
+define( 'SKINO_PER_PAGE', 16 );
+// Products per page on the K-Beauty, Clearance and J-Beauty sale pages (5 x 4 on wide screens).
+define( 'SKINO_SALE_PER_PAGE', 20 );
 
 require_once SKINO_DIR . '/inc/icons.php';
 require_once SKINO_DIR . '/inc/helpers.php';
 require_once SKINO_DIR . '/inc/woocommerce.php';
+require_once SKINO_DIR . '/inc/filters.php';
 require_once SKINO_DIR . '/inc/ajax.php';
 require_once SKINO_DIR . '/inc/checkout.php';
+require_once SKINO_DIR . '/inc/account.php';
 require_once SKINO_DIR . '/inc/sale.php';
 require_once SKINO_DIR . '/inc/setup.php';
 
@@ -42,6 +48,11 @@ add_action( 'wp_enqueue_scripts', function () {
 		'checkout' => function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() : '',
 	) );
 }, 20 );
+
+// Start loading the main Inter file early so text does not jump when it swaps in.
+add_action( 'wp_head', function () {
+	printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n", esc_url( SKINO_URI . '/assets/fonts/inter-latin-wght-normal.woff2' ) );
+}, 1 );
 
 // WooCommerce's own stylesheets fight with the theme's design; the theme styles WC markup itself.
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );

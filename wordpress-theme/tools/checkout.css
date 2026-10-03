@@ -1,0 +1,141 @@
+/* ------------------------------------------------------------------ Checkout */
+.skino-checkout { max-width: 72rem; margin: 0 auto; }
+.skino-co-head { text-align: center; margin-bottom: 1.5rem; }
+.skino-co-head h1 { display: inline-flex; align-items: center; gap: .6rem; font-size: 1.75rem; font-weight: 800; color: #222; margin: 0; }
+.skino-co-head h1 svg { color: #16a34a; }
+.skino-co-head > p { margin: .35rem 0 1.1rem; color: #6b7280; }
+.skino-steps { list-style: none; display: inline-flex; align-items: center; gap: .35rem; padding: 0; margin: 0; font-size: .82rem; color: #9ca3af; flex-wrap: wrap; justify-content: center; }
+.skino-steps li { display: inline-flex; align-items: center; gap: .45rem; font-weight: 600; }
+.skino-steps li + li::before { content: ''; width: 1.75rem; height: 2px; background: #e5e7eb; margin-right: .35rem; border-radius: 2px; }
+.skino-steps li span { width: 1.4rem; height: 1.4rem; border-radius: 999px; background: #f3f4f6; color: #9ca3af; display: inline-flex; align-items: center; justify-content: center; font-size: .72rem; }
+.skino-steps li.is-done { color: #16a34a; }
+.skino-steps li.is-done span { background: #dcfce7; color: #16a34a; }
+.skino-steps li.is-current { color: #222; }
+.skino-steps li.is-current span { background: #EC4899; color: #fff; }
+
+.skino-co-grid { display: grid; gap: 1.25rem; align-items: start; }
+@media (min-width: 1024px) { .skino-co-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.75rem; } }
+.skino-co-main { display: grid; gap: 1.25rem; }
+@media (min-width: 1024px) { .skino-co-side { position: sticky; top: 1rem; } }
+
+.skino-card { background: #fff; border: 1px solid #f1f1f4; border-radius: 1.1rem; padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+@media (min-width: 640px) { .skino-card { padding: 1.6rem; } }
+.skino-card-title { display: flex; align-items: center; gap: .65rem; font-size: 1.1rem; font-weight: 700; color: #222; margin: 0 0 1.1rem; }
+.skino-num { width: 1.7rem; height: 1.7rem; border-radius: 999px; background: #EC4899; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: .85rem; font-weight: 700; flex-shrink: 0; }
+.skino-edit-cart { margin-left: auto; font-size: .8rem; font-weight: 600; color: #DB2777; background: none; padding: 0; }
+.skino-edit-cart:hover { text-decoration: underline; }
+
+/* Fields */
+.skino-checkout .form-row { margin: 0 0 1rem; padding: 0; width: 100%; float: none; }
+.skino-checkout .form-row label, .skino-field-label { display: block; font-size: .85rem; font-weight: 600; color: #374151; margin-bottom: .4rem; }
+.skino-checkout .required { color: #dc2626; text-decoration: none; }
+.skino-checkout .optional { color: #9ca3af; font-weight: 400; }
+.skino-checkout input.input-text, .skino-checkout textarea, .skino-checkout select { min-height: 3rem; padding: .75rem 1rem; font-size: 1rem; border: 1.5px solid #e5e7eb; border-radius: .8rem; background: #fff; transition: border-color .15s, box-shadow .15s; }
+.skino-checkout textarea { resize: vertical; min-height: 4.5rem; line-height: 1.5; }
+.skino-checkout input.input-text:focus, .skino-checkout textarea:focus { border-color: #EC4899; box-shadow: 0 0 0 4px rgba(236,72,153,.12); outline: none; }
+.skino-checkout .woocommerce-invalid input.input-text, .skino-checkout .woocommerce-invalid textarea { border-color: #ef4444; background: #fff8f8; }
+.skino-checkout .woocommerce-validated input.input-text { border-color: #bbf7d0; }
+.skino-hint { display: flex; align-items: center; gap: .45rem; margin: -.25rem 0 0; font-size: .8rem; color: #6b7280; }
+.skino-hint svg { color: #9ca3af; flex-shrink: 0; }
+.skino-account-opt { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px dashed #e5e7eb; }
+.skino-account-opt .create-account label { display: flex; align-items: flex-start; gap: .6rem; font-weight: 500; color: #4b5563; margin: 0; }
+.skino-account-opt input[type=checkbox] { margin-top: .2rem; width: 1.1rem; height: 1.1rem; accent-color: #EC4899; }
+
+/* Delivery location cards */
+.skino-loc-grid { display: grid; gap: .75rem; }
+@media (min-width: 560px) { .skino-loc-grid { grid-template-columns: 1fr 1fr; } }
+.skino-radio-card { position: relative; display: flex !important; align-items: center; gap: .75rem; margin: 0 !important; padding: .95rem 1rem; border: 1.5px solid #e5e7eb; border-radius: .9rem; background: #fff; cursor: pointer; transition: border-color .15s, background .15s, box-shadow .15s; }
+.skino-radio-card:hover { border-color: #f9a8d4; }
+.skino-radio-card:has(input:checked) { border-color: #EC4899; background: #fff7fb; box-shadow: 0 0 0 4px rgba(236,72,153,.1); }
+.skino-radio-card:has(input:focus-visible) { outline: 2px solid #EC4899; outline-offset: 2px; }
+.skino-radio-dot { width: 1.25rem; height: 1.25rem; flex-shrink: 0; border: 2px solid #d1d5db; border-radius: 999px; background: #fff; display: inline-block; position: relative; }
+.skino-radio-card:has(input:checked) .skino-radio-dot { border-color: #EC4899; }
+.skino-radio-card:has(input:checked) .skino-radio-dot::after { content: ''; position: absolute; inset: 3px; border-radius: 999px; background: #EC4899; }
+.skino-radio-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.skino-radio-text strong { font-size: .95rem; color: #222; }
+.skino-radio-text small { font-size: .75rem; color: #6b7280; margin-top: .1rem; }
+.skino-radio-price { font-weight: 700; color: #222; white-space: nowrap; }
+
+/* Order summary */
+.skino-lines { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .9rem; }
+.skino-lines li { display: grid; grid-template-columns: 3.5rem 1fr auto; gap: .8rem; align-items: center; }
+.skino-line-img { position: relative; width: 3.5rem; height: 3.5rem; border-radius: .7rem; background: #f9fafb; border: 1px solid #f1f1f4; display: block; }
+.skino-line-img img { width: 100%; height: 100%; object-fit: contain; border-radius: .7rem; padding: .15rem; }
+.skino-line-img b { position: absolute; top: -.45rem; right: -.45rem; min-width: 1.35rem; height: 1.35rem; padding: 0 .3rem; border-radius: 999px; background: #4b5563; color: #fff; font-size: .72rem; display: inline-flex; align-items: center; justify-content: center; }
+.skino-line-name { font-size: .9rem; font-weight: 500; color: #222; line-height: 1.35; }
+.skino-line-price { font-weight: 600; color: #222; font-size: .92rem; }
+.skino-totals { margin: 0; padding-top: .9rem; border-top: 1px solid #f1f1f4; display: grid; gap: .55rem; }
+.skino-totals > div { display: flex; justify-content: space-between; gap: 1rem; font-size: .92rem; color: #4b5563; }
+.skino-totals dt, .skino-totals dd { margin: 0; }
+.skino-totals dd { font-weight: 600; color: #222; text-align: right; }
+.skino-totals .skino-fee-pending dd { color: #d97706; font-weight: 500; font-size: .85rem; }
+.skino-totals .order-total { margin-top: .35rem; padding-top: .8rem; border-top: 1px solid #f1f1f4; font-size: 1.15rem; font-weight: 700; color: #222; }
+.skino-totals .order-total dd { font-size: 1.35rem; color: #EC4899; }
+
+/* Payment */
+.skino-pay-title { margin-top: 1.5rem; padding-top: 1.4rem; border-top: 1px solid #f1f1f4; }
+#payment { margin: 0; background: transparent; }
+#payment ul.payment_methods { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .7rem; }
+#payment ul.payment_methods > li { border: 1.5px solid #e5e7eb; border-radius: .9rem; padding: 0; background: #fff; overflow: hidden; transition: border-color .15s, background .15s; }
+#payment ul.payment_methods > li > input[type=radio] { position: absolute; opacity: 0; pointer-events: none; }
+#payment ul.payment_methods > li > label { display: flex; align-items: center; gap: .75rem; margin: 0; padding: .95rem 1rem; cursor: pointer; font-size: .95rem; font-weight: 700; color: #222; }
+#payment ul.payment_methods > li > label::before { content: ''; width: 1.2rem; height: 1.2rem; border: 2px solid #d1d5db; border-radius: 999px; background: #fff; flex-shrink: 0; transition: border-color .15s, box-shadow .15s; }
+#payment ul.payment_methods > li:has(> input:checked) { border-color: #EC4899; background: #fff7fb; }
+#payment ul.payment_methods > li:has(> input:checked) > label::before { border-color: #EC4899; box-shadow: inset 0 0 0 3px #fff7fb; background: #EC4899; }
+#payment ul.payment_methods > li:has(> input#payment_method_skino_bkash:checked) { border-color: #E2136E; background: #fdf2f8; }
+#payment ul.payment_methods > li:has(> input#payment_method_skino_bkash:checked) > label::before { border-color: #E2136E; box-shadow: inset 0 0 0 3px #fdf2f8; background: #E2136E; }
+#payment ul.payment_methods > li img { width: 2rem; height: 2rem; margin-left: auto; border-radius: .4rem; object-fit: cover; }
+#payment .payment_box { margin: 0; padding: 0 1rem 1rem; font-size: .875rem; color: #6b7280; background: transparent; }
+#payment .payment_box::before { display: none; }
+#payment .payment_box p { margin: 0 0 .75rem; }
+.skino-bkash-box { background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: .8rem; padding: .9rem; }
+.skino-bkash-send { background: #fce7f3; border-radius: .6rem; padding: .6rem .8rem; color: #be185d; font-size: .88rem; margin: 0 0 .85rem !important; }
+.skino-bkash-box .form-row { margin-bottom: .75rem; }
+.skino-bkash-box .form-row:last-child { margin-bottom: 0; }
+
+/* Place order */
+.woocommerce-privacy-policy-text, .woocommerce-terms-and-conditions-wrapper { font-size: .78rem; color: #9ca3af; line-height: 1.5; margin: .25rem 0 1rem; }
+.woocommerce-privacy-policy-text a { color: #DB2777; text-decoration: underline; }
+#place_order { width: 100%; min-height: 3.4rem; padding: 1rem 1.25rem; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; border-radius: .95rem; background: linear-gradient(120deg, #EC4899, #DB2777); box-shadow: 0 8px 20px rgba(236,72,153,.35); transition: transform .15s, box-shadow .15s; }
+#place_order:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(236,72,153,.42); background: linear-gradient(120deg, #EC4899, #DB2777); }
+.skino-assure { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; }
+.skino-assure li { display: flex; align-items: center; gap: .55rem; font-size: .85rem; color: #4b5563; }
+.skino-assure svg { color: #16a34a; flex-shrink: 0; }
+.skino-assure-help { margin: .9rem 0 0; text-align: center; font-size: .82rem; color: #6b7280; }
+
+/* Coupon: a quiet link instead of a blue banner */
+.skino-checkout .woocommerce-form-coupon-toggle .woocommerce-info { background: transparent; border: 0; padding: 0; margin: 0 0 1rem; text-align: center; color: #6b7280; font-size: .9rem; }
+.skino-checkout .woocommerce-form-coupon-toggle .woocommerce-info a { float: none; margin: 0; color: #DB2777; font-weight: 600; text-decoration: underline; }
+.skino-checkout form.checkout_coupon { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; background: #fff; border: 1px dashed #f9a8d4; border-radius: .9rem; padding: 1rem; margin: 0 0 1.25rem; }
+.skino-checkout form.checkout_coupon p { margin: 0; }
+.skino-checkout form.checkout_coupon p:first-child { flex-basis: 100%; color: #6b7280; font-size: .85rem; }
+.skino-checkout form.checkout_coupon .form-row-first { flex: 1; min-width: 10rem; }
+.skino-checkout .woocommerce-NoticeGroup .woocommerce-error, .skino-checkout .woocommerce-error { margin-bottom: 1rem; }
+
+/* Thank-you page */
+.skino-thanks { max-width: 44rem; margin: 0 auto; display: grid; gap: 1.25rem; }
+.skino-thanks-hero { text-align: center; padding: 2rem 1.25rem; border-radius: 1.2rem; background: linear-gradient(120deg, #f0fdf4, #ecfeff); border: 1px solid #bbf7d0; }
+.skino-thanks-hero.is-failed { background: #fef2f2; border-color: #fecaca; }
+.skino-thanks-tick { display: inline-flex; width: 4rem; height: 4rem; border-radius: 999px; background: #16a34a; color: #fff; align-items: center; justify-content: center; margin-bottom: .8rem; box-shadow: 0 8px 20px rgba(22,163,74,.35); }
+.skino-thanks-hero h1 { font-size: 1.7rem; font-weight: 800; color: #14532d; margin: 0 0 .4rem; }
+.skino-thanks-hero p { margin: 0; color: #166534; }
+.skino-thanks-hero.is-failed h1, .skino-thanks-hero.is-failed p { color: #991b1b; }
+.skino-thanks-meta { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+@media (min-width: 640px) { .skino-thanks-meta { grid-template-columns: repeat(4, 1fr); } }
+.skino-thanks-meta li { background: #fff; border: 1px solid #f1f1f4; border-radius: .9rem; padding: .85rem 1rem; display: grid; gap: .2rem; }
+.skino-thanks-meta span { font-size: .72rem; color: #9ca3af; text-transform: uppercase; letter-spacing: .06em; }
+.skino-thanks-meta strong { color: #222; font-size: .95rem; word-break: break-word; }
+.skino-next { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; }
+.skino-next li { display: flex; gap: .9rem; align-items: flex-start; }
+.skino-next li > span { width: 2.5rem; height: 2.5rem; border-radius: .8rem; background: #fdf2f8; color: #EC4899; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.skino-next strong { display: block; color: #222; }
+.skino-next p { margin: .15rem 0 0; font-size: .88rem; color: #6b7280; }
+.skino-thanks-actions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+.skino-btn { display: inline-flex; align-items: center; justify-content: center; padding: .85rem 1.6rem; border-radius: 999px; background: #EC4899; color: #fff !important; font-weight: 700; text-decoration: none !important; transition: background .15s; }
+.skino-btn:hover { background: #DB2777; }
+.skino-btn-ghost { background: #fff; color: #222 !important; border: 1.5px solid #e5e7eb; }
+.skino-btn-ghost:hover { background: #f9fafb; }
+.skino-thanks-help { text-align: center; color: #6b7280; font-size: .88rem; margin: 0; }
+.skino-thanks .woocommerce-order-details, .skino-thanks .woocommerce-customer-details { background: #fff; border: 1px solid #f1f1f4; border-radius: 1.1rem; padding: 1.25rem; }
+.skino-thanks h2.woocommerce-order-details__title, .skino-thanks h2.woocommerce-column__title { font-size: 1.05rem; font-weight: 700; margin: 0 0 .75rem; }
+.skino-thanks .woocommerce-columns--addresses { display: grid; gap: 1rem; }

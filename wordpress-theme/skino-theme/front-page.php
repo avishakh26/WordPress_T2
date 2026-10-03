@@ -63,8 +63,26 @@ $features = array(
 /** Latest = newest products; Best selling = WooCommerce popularity (falls back to newest until sales exist). */
 $latest = $best = array();
 if ( function_exists( 'wc_get_products' ) ) {
+	// Latest: the most recently added products.
 	$latest = wc_get_products( array( 'limit' => 8, 'orderby' => 'date', 'order' => 'DESC', 'status' => 'publish' ) );
-	$best   = wc_get_products( array( 'limit' => 8, 'orderby' => 'popularity', 'order' => 'DESC', 'status' => 'publish' ) );
+
+	// Best selling: real sales first (WooCommerce's total_sales), then the review count from the product data,
+	// so the tab already shows popular products before the first order and keeps improving as orders arrive.
+	$best_ids = get_posts( array(
+		'post_type'           => 'product',
+		'post_status'         => 'publish',
+		'posts_per_page'      => 8,
+		'fields'              => 'ids',
+		'ignore_sticky_posts' => true,
+		'no_found_rows'       => true,
+		'meta_query'          => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+			'relation' => 'OR',
+			'sales'    => array( 'key' => 'total_sales', 'type' => 'NUMERIC', 'compare' => 'EXISTS' ),
+			'reviews'  => array( 'key' => '_skino_review_count', 'type' => 'NUMERIC', 'compare' => 'EXISTS' ),
+		),
+		'orderby'             => array( 'sales' => 'DESC', 'reviews' => 'DESC', 'ID' => 'DESC' ),
+	) );
+	$best = array_filter( array_map( 'wc_get_product', $best_ids ) );
 }
 
 /** One slide of the product carousel. */

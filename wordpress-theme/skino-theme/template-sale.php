@@ -36,6 +36,12 @@ usort( $list, function ( $a, $b ) use ( $sort ) {
 	}
 } );
 
+// Paging: 16 per page, ?pg=2 for the next one (the sale list is filtered in PHP, so it is sliced here).
+$total_items = count( $list );
+$pages       = max( 1, (int) ceil( $total_items / SKINO_SALE_PER_PAGE ) );
+$page        = isset( $_GET['pg'] ) ? min( $pages, max( 1, absint( $_GET['pg'] ) ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification
+$page_items  = array_slice( $list, ( $page - 1 ) * SKINO_SALE_PER_PAGE, SKINO_SALE_PER_PAGE );
+
 get_header();
 ?>
 <div class="bg-gray-50 min-h-screen">
@@ -79,8 +85,23 @@ get_header();
 			</div>
 		<?php else : ?>
 			<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
-				<?php foreach ( $list as $product ) { skino_product_card( $product ); } ?>
+				<?php foreach ( $page_items as $product ) { skino_product_card( $product ); } ?>
 			</div>
+			<?php if ( $pages > 1 ) : ?>
+				<nav class="mt-8 skino-pagination" aria-label="<?php esc_attr_e( 'Pages', 'skino' ); ?>">
+					<?php
+					echo wp_kses_post( paginate_links( array(
+						'base'      => esc_url_raw( add_query_arg( 'pg', '%#%', skino_sale_url( $slug ) ) ),
+						'format'    => '',
+						'current'   => $page,
+						'total'     => $pages,
+						'add_args'  => ( 'discount' !== $sort ) ? array( 'sort' => $sort ) : false,
+						'prev_text' => '&larr;',
+						'next_text' => '&rarr;',
+					) ) );
+					?>
+				</nav>
+			<?php endif; ?>
 		<?php endif; ?>
 	</div>
 </div>

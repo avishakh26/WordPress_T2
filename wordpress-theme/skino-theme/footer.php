@@ -66,13 +66,20 @@ $cats       = array( 'Makeup', 'Skin Care', 'Hair Care', 'Fragrance', 'Body Care
 			</div>
 		</div>
 
-		<div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+		<div class="border-t border-gray-800 pt-8 lg:pr-20 flex flex-col md:flex-row justify-between items-center text-xs">
 			<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( $brand_name ); ?>. <?php esc_html_e( 'All Rights Reserved.', 'skino' ); ?></p>
-			<div class="mt-4 md:mt-0 flex gap-2">
-				<?php foreach ( array( 'Visa', 'Mastercard', 'bKash' ) as $pay ) : ?>
-					<span class="px-3 h-[30px] inline-flex items-center rounded bg-gray-700 text-white text-[11px] font-semibold"><?php echo esc_html( $pay ); ?></span>
-				<?php endforeach; ?>
-			</div>
+			<ul class="mt-4 md:mt-0 flex items-center gap-2.5" aria-label="<?php esc_attr_e( 'Payment methods', 'skino' ); ?>">
+				<li class="skino-pay" title="Visa" role="img" aria-label="Visa">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 24 14" width="40" height="23" fill="#1A1F71" aria-hidden="true"><path d="M9.112 8.262L5.97 15.758H3.92L2.374 9.775c-.094-.368-.175-.503-.461-.658C1.447 8.864.677 8.627 0 8.479l.046-.217h3.3a.904.904 0 01.894.764l.817 4.338 2.018-5.102zm8.033 5.049c.008-1.979-2.736-2.088-2.717-2.972.006-.269.262-.555.822-.628a3.66 3.66 0 011.913.336l.34-1.59a5.207 5.207 0 00-1.814-.333c-1.917 0-3.266 1.02-3.278 2.479-.012 1.079.963 1.68 1.698 2.04.756.367 1.01.603 1.006.931-.005.504-.602.725-1.16.734-.975.015-1.54-.263-1.992-.473l-.351 1.642c.453.208 1.289.39 2.156.398 2.037 0 3.37-1.006 3.377-2.564m5.061 2.447H24l-1.565-7.496h-1.656a.883.883 0 00-.826.55l-2.909 6.946h2.036l.405-1.12h2.488zm-2.163-2.656l1.02-2.815.588 2.815zm-8.16-4.84l-1.603 7.496H8.34l1.605-7.496z"/></svg>
+				</li>
+				<li class="skino-pay" title="Mastercard" role="img" aria-label="Mastercard">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 24" width="36" height="23" aria-hidden="true"><circle cx="13" cy="12" r="11" fill="#EB001B"/><circle cx="25" cy="12" r="11" fill="#F79E1B"/><path d="M19 2.78A11 11 0 0 1 19 21.22A11 11 0 0 1 19 2.78Z" fill="#FF5F00"/></svg>
+				</li>
+				<li class="skino-pay skino-pay-bkash" title="bKash" role="img" aria-label="bKash">
+					<img src="<?php echo esc_url( skino_asset( 'img/bkash_logo_custom.png' ) ); ?>" alt="" width="22" height="22" loading="lazy">
+					<span>bKash</span>
+				</li>
+			</ul>
 		</div>
 	</div>
 </footer>

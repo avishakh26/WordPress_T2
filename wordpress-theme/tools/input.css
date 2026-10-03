@@ -1,6 +1,31 @@
 @import "tailwindcss";
 @import "./account.css";
 @import "./auth.css";
+@import "./footer.css";
+@import "./filters.css";
+@import "./checkout.css";
+
+/*
+ * Typeface: SF Pro where the visitor's device has it (Apple devices), otherwise Inter, which is bundled with the
+ * theme (SIL Open Font License) and is the closest freely licensed match. SF Pro itself cannot be distributed
+ * on a website under Apple's license, so it is never embedded.
+ */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
 /* Tailwind scans the theme's PHP and JS for class names. */
 @source "../skino-theme/**/*.php";
@@ -53,6 +78,9 @@ html { scroll-behavior: smooth; }
 /* Hero slider: no side arrows (dots + swipe only). */
 .home-hero .swiper-pagination-bullet { width: 8px; height: 8px; }
 
+/* Swiper's stylesheet sets display:block on .swiper and would override Tailwind's .hidden, showing both tab panels. */
+.swiper.hidden { display: none !important; }
+
 /* Latest / Best selling tabs */
 .tab-btn { position: relative; }
 .tab-btn.is-active { color: #EC4899; }
@@ -100,33 +128,6 @@ button[data-wishlist-id].flex.is-wished { background: transparent; color: #ef444
 }
 .woocommerce input.input-text:focus, .woocommerce textarea:focus, .woocommerce select:focus { box-shadow: 0 0 0 2px #EC4899; border-color: transparent; }
 .woocommerce-invalid input.input-text { border-color: #ef4444; }
-
-/* Checkout */
-form.woocommerce-checkout { display: grid; gap: 2rem; }
-@media (min-width: 1024px) {
-  form.woocommerce-checkout { grid-template-columns: 1.2fr 1fr; align-items: start; }
-  form.woocommerce-checkout #order_review_heading, form.woocommerce-checkout #order_review { grid-column: 2; }
-  form.woocommerce-checkout #customer_details { grid-column: 1; grid-row: 1 / span 2; }
-}
-.woocommerce-checkout h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; }
-#order_review_heading { margin-bottom: 0; }
-.woocommerce-checkout-review-order { background: #f9fafb; border: 1px solid #f3f4f6; border-radius: 1rem; padding: 1rem; }
-.woocommerce-checkout-review-order-table { width: 100%; font-size: .9rem; border-collapse: collapse; }
-.woocommerce-checkout-review-order-table th, .woocommerce-checkout-review-order-table td { padding: .5rem 0; text-align: left; border-bottom: 1px solid #e5e7eb; }
-.woocommerce-checkout-review-order-table td:last-child, .woocommerce-checkout-review-order-table th:last-child { text-align: right; }
-.woocommerce-checkout-review-order-table .order-total th, .woocommerce-checkout-review-order-table .order-total td { font-weight: 700; color: #EC4899; font-size: 1.05rem; }
-#payment { margin-top: 1rem; }
-#payment ul.payment_methods { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .75rem; }
-#payment ul.payment_methods > li { border: 2px solid #e5e7eb; border-radius: .9rem; padding: .85rem 1rem; background: #fff; }
-#payment ul.payment_methods > li:has(> input:checked) { border-color: #EC4899; background: #fff7fb; }
-#payment ul.payment_methods > li:has(> input#payment_method_skino_bkash:checked) { border-color: #E2136E; background: #fdf2f8; }
-#payment ul.payment_methods > li > label { display: inline; font-weight: 700; color: #222; }
-#payment ul.payment_methods > li img { display: inline-block; width: 2rem; height: 2rem; object-fit: cover; border-radius: .25rem; margin-left: .5rem; vertical-align: middle; }
-#payment .payment_box { margin-top: .75rem; font-size: .875rem; color: #6b7280; }
-.skino-bkash-box { background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: .75rem; padding: .85rem; }
-.skino-bkash-send { background: #fce7f3; border-radius: .5rem; padding: .5rem .7rem; color: #be185d; font-size: .85rem; margin-bottom: .75rem; }
-.skino-radio-card:has(input:checked) { border-color: #EC4899; background: #fff7fb; color: #EC4899; }
-.woocommerce-privacy-policy-text { font-size: .75rem; color: #9ca3af; margin: 1rem 0; }
 
 /* Cart + My Account tables */
 .woocommerce table.shop_table { width: 100%; border-collapse: collapse; font-size: .9rem; }

@@ -1,33 +1,23 @@
 <?php
 /**
- * Category, brand, search and shop archives (ported from CategoryPage.jsx / BrandPage.jsx).
+ * Category, brand, search and shop archives (ported from CategoryPage.jsx / BrandPage.jsx),
+ * with combinable Category + Brand filters.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 get_header();
 
-$is_brand   = is_tax( skino_brand_taxonomy() );
-$is_search  = is_search();
-$term       = get_queried_object();
-$active_id  = ( ( is_tax( 'product_cat' ) || $is_brand ) && $term instanceof WP_Term ) ? $term->term_id : 0;
-$heading    = $is_search
+$is_search = is_search();
+$active    = skino_active_filters();
+$selection = skino_filter_heading();
+$heading   = $is_search
 	? sprintf( __( 'Search results for "%s"', 'skino' ), get_search_query() )
-	: ( $active_id ? $term->name : __( 'All Products', 'skino' ) );
+	: ( $selection ? $selection : __( 'All Products', 'skino' ) );
 
-// Sidebar list: all brands on a brand page, otherwise all categories.
-$taxonomy = $is_brand ? skino_brand_taxonomy() : 'product_cat';
-$terms    = get_terms( array( 'taxonomy' => $taxonomy, 'hide_empty' => true, 'orderby' => $is_brand ? 'name' : 'count', 'order' => $is_brand ? 'ASC' : 'DESC' ) );
-$items    = array();
-if ( ! is_wp_error( $terms ) ) {
-	foreach ( $terms as $t ) {
-		if ( 'uncategorized' === $t->slug ) {
-			continue;
-		}
-		$items[] = array( 'label' => $t->name, 'url' => get_term_link( $t ), 'count' => $t->count, 'active' => $t->term_id === $active_id );
-	}
-}
-$total = isset( $GLOBALS['wp_query']->found_posts ) ? (int) $GLOBALS['wp_query']->found_posts : 0;
+$sections  = skino_filter_sections();
+$clear_url = ( $active['cat'] || $active['brand'] ) ? skino_filter_url( '', '' ) : '';
+$total     = isset( $GLOBALS['wp_query']->found_posts ) ? (int) $GLOBALS['wp_query']->found_posts : 0;
 ?>
 <div class="bg-gray-50 min-h-screen">
 	<div class="bg-white border-b border-gray-200">
@@ -40,11 +30,11 @@ $total = isset( $GLOBALS['wp_query']->found_posts ) ? (int) $GLOBALS['wp_query']
 
 	<div class="container mx-auto px-4 py-4 md:py-8">
 		<div class="flex flex-col lg:flex-row gap-4 lg:gap-8">
-			<?php if ( $items ) {
+			<?php if ( $sections ) {
 				get_template_part( 'template-parts/filter-panel', null, array(
-					'title'        => $is_brand ? __( 'All Brands', 'skino' ) : __( 'All Categories', 'skino' ),
-					'active_label' => $heading,
-					'items'        => $items,
+					'sections'     => $sections,
+					'active_label' => $selection ? $selection : __( 'All Products', 'skino' ),
+					'clear_url'    => $clear_url,
 				) );
 			} ?>
 
@@ -57,6 +47,25 @@ $total = isset( $GLOBALS['wp_query']->found_posts ) ? (int) $GLOBALS['wp_query']
 					<?php woocommerce_catalog_ordering(); ?>
 				</div>
 
+				<?php if ( $active['cat'] && $active['brand'] ) : ?>
+					<div class="flex flex-wrap gap-2 mb-5">
+						<?php
+						$chips = array(
+							array( 'cat', get_term_by( 'slug', $active['cat'], 'product_cat' ) ),
+							array( 'brand', get_term_by( 'slug', $active['brand'], skino_brand_taxonomy() ) ),
+						);
+						foreach ( $chips as $chip ) :
+							if ( ! $chip[1] ) {
+								continue;
+							}
+							$next = $active;
+							$next[ $chip[0] ] = '';
+							?>
+							<a href="<?php echo esc_url( skino_filter_url( $next['cat'], $next['brand'] ) ); ?>" class="skino-chip"><?php echo esc_html( $chip[1]->name ); ?> <?php skino_icon( 'X', 'w-3 h-3' ); ?></a>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+
 				<?php if ( have_posts() ) : ?>
 					<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
 						<?php while ( have_posts() ) : the_post(); skino_product_card( get_the_ID() ); endwhile; ?>
@@ -65,7 +74,7 @@ $total = isset( $GLOBALS['wp_query']->found_posts ) ? (int) $GLOBALS['wp_query']
 				<?php else : ?>
 					<div class="text-center py-20 bg-white rounded-xl border border-gray-100">
 						<p class="text-gray-400 text-lg mb-4"><?php echo $is_search ? esc_html__( 'No products matched your search.', 'skino' ) : esc_html__( 'No products found here.', 'skino' ); ?></p>
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="text-primary font-medium hover:underline">&larr; <?php esc_html_e( 'Back to Home', 'skino' ); ?></a>
+						<a href="<?php echo esc_url( $clear_url ? $clear_url : home_url( '/' ) ); ?>" class="text-primary font-medium hover:underline">&larr; <?php echo $clear_url ? esc_html__( 'Clear filters', 'skino' ) : esc_html__( 'Back to Home', 'skino' ); ?></a>
 					</div>
 				<?php endif; ?>
 			</div>
