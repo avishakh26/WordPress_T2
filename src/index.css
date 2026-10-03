@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'SF Pro', Inter, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-montserrat: var(--font-sans);
+
+  --color-primary: #EC4899;
+  --color-primaryDark: #DB2777;
+  --color-secondary: #222222;
+  --color-accent: #61CE70;
+  --color-textMain: #666666;
+  --color-textMuted: #999999;
+  --color-cream: #faf6f0;
+  --color-sand: #f1e8dc;
+  --color-ink: #2b2420;
+  --color-gold: #b08a4b;
+  --color-goldDark: #8a6a31;
+  --color-sage: #5f6f52;
+  --font-serif: var(--font-sans);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    color: #666666;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    color: #222222;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+@layer utilities {
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Hero slider: arrows only where there is room for them; swipe on phones. */
+.home-hero .swiper-button-next, .home-hero .swiper-button-prev { display: none; }
+@media (min-width: 768px) {
+  .home-hero .swiper-button-next, .home-hero .swiper-button-prev { display: flex; }
+}
+.home-hero .swiper-pagination-bullet { width: 8px; height: 8px; }
+
+@keyframes slideInLeft { from { transform: translateX(-100%); } to { transform: none; } }
