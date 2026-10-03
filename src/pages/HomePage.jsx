@@ -187,7 +187,7 @@ const HomePage = () => {
           pagination={{ clickable: true }}
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
-          className="home-hero aspect-[1717/916] md:aspect-auto md:h-[500px]"
+          className="home-hero aspect-[1717/916] lg:aspect-auto lg:h-[500px]"
         >
           {/* <SwiperSlide>
             <div className="relative w-full h-full overflow-hidden bg-gray-100">
@@ -208,7 +208,7 @@ const HomePage = () => {
           <SwiperSlide>
             <div className="relative w-full h-full overflow-hidden bg-gray-100">
               <img src={heroImage2} alt="Premium skincare collection" className="absolute inset-0 h-full w-full object-cover" />
-              <div className="absolute inset-0 md:bg-black/25" />
+              <div className="absolute inset-0 lg:bg-black/25" />
               <div className="container mx-auto px-4 h-full flex items-center justify-end text-right relative z-10">
                 {/* Text overlay removed as requested */}
               </div>
@@ -217,7 +217,7 @@ const HomePage = () => {
           <SwiperSlide>
             <div className="relative w-full h-full overflow-hidden bg-gray-100">
               <img src={heroImage3} alt="Premium cosmetics" className="absolute inset-0 h-full w-full object-cover" />
-              <div className="absolute inset-0 md:bg-black/25" />
+              <div className="absolute inset-0 lg:bg-black/25" />
               <div className="container mx-auto px-4 h-full flex items-center justify-end text-right relative z-10">
                 {/* Text overlay removed as requested */}
               </div>
@@ -226,7 +226,7 @@ const HomePage = () => {
           <SwiperSlide>
             <div className="relative w-full h-full overflow-hidden bg-gray-100">
               <img src={heroImage4} alt="Luxury fragrances" className="absolute inset-0 h-full w-full object-cover" />
-              <div className="absolute inset-0 md:bg-black/25" />
+              <div className="absolute inset-0 lg:bg-black/25" />
               <div className="container mx-auto px-4 h-full flex items-center relative z-10">
                 {/* Text overlay removed as requested */}
               </div>
@@ -241,15 +241,15 @@ const HomePage = () => {
           <h2 className="text-[17px] md:text-2xl font-serif font-extrabold text-[#003366] mb-6 md:mb-8 text-center uppercase tracking-wide">
             EXPLORE PRODUCT BY CATEGORY
           </h2>
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 md:flex md:gap-8 pb-4 justify-center px-1">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 md:grid-cols-6 md:gap-4 lg:flex lg:gap-8 pb-4 justify-center px-1">
             {cosmeticCategories.map((cat, idx) => (
-              <Link key={idx} to={`/category/${encodeURIComponent(cat.name)}`} className="flex flex-col items-center group cursor-pointer md:min-w-[100px]">
-                <div className="w-full aspect-square md:w-36 md:h-36 rounded-2xl sm:rounded-3xl md:rounded-full bg-gradient-to-b from-purple-200 via-purple-300 to-[#c758e8] p-[3px] mb-2 shadow-sm group-hover:shadow-md transition-shadow">
+              <Link key={idx} to={`/category/${encodeURIComponent(cat.name)}`} className="flex flex-col items-center group cursor-pointer lg:min-w-[100px]">
+                <div className="w-full aspect-square lg:w-36 lg:h-36 rounded-2xl sm:rounded-3xl md:rounded-full bg-gradient-to-b from-purple-200 via-purple-300 to-[#c758e8] p-[3px] mb-2 shadow-sm group-hover:shadow-md transition-shadow">
                   <div className="w-full h-full rounded-[1.1rem] sm:rounded-[1.4rem] md:rounded-full overflow-hidden bg-white">
                     <img src={cat.img} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   </div>
                 </div>
-                <span className="font-semibold text-[#004b7a] group-hover:text-primary transition-colors text-center text-[10px] sm:text-[12px] md:text-base leading-tight mt-1 truncate w-full px-1">{cat.name}</span>
+                <span className="font-semibold text-[#004b7a] group-hover:text-primary transition-colors text-center text-[10px] sm:text-[12px] lg:text-base leading-tight mt-1 truncate w-full px-1">{cat.name}</span>
               </Link>
             ))}
           </div>

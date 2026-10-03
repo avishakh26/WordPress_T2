@@ -49,7 +49,7 @@ const Header = () => {
   return (
     <header className="w-full relative z-[150] bg-white">
       {/* Top Bar */}
-      <div className="bg-[#f5f5f5] text-textMuted text-xs py-2 border-b border-gray-200 hidden md:block">
+      <div className="bg-[#f5f5f5] text-textMuted text-xs py-2 border-b border-gray-200 hidden lg:block">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <span className="flex items-center gap-1 hover:text-primary transition cursor-pointer">
@@ -74,33 +74,33 @@ const Header = () => {
       </div>
 
       {/* Main Header (Logo, Search, Icons) */}
-      <div className="bg-white py-3 md:py-5 shadow-sm">
+      <div className="bg-white py-3 lg:py-5 shadow-sm">
         <div className="container mx-auto px-4">
           
           {/* Top Row for Mobile (Hamburger, Logo, Icons) */}
-          <div className="flex items-center justify-between mb-3 md:mb-0">
-            <div className="flex items-center gap-2 md:gap-0">
+          <div className="flex items-center justify-between mb-3 lg:mb-0">
+            <div className="flex items-center gap-2 lg:gap-0">
               {/* Mobile Hamburger */}
-              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden text-red-500 mr-2 p-1">
+              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden text-red-500 mr-2 p-1">
                 <Menu className="w-6 h-6" />
               </button>
               
               {/* Logo */}
-              <Link to="/" className="text-2xl md:text-3xl font-montserrat font-bold text-secondary flex items-center gap-1 md:gap-2">
+              <Link to="/" className="text-2xl lg:text-3xl font-montserrat font-bold text-secondary flex items-center gap-1 lg:gap-2">
                 <img src="/favicon.svg" alt="Logo" className="w-8 h-8 hidden" /> {/* Placeholder for graphic logo if needed */}
-                <span className="text-[#d4af37] font-light hidden md:inline">BEAUTY</span>
-                <div className="md:hidden flex flex-col items-center">
+                <span className="text-[#d4af37] font-light hidden lg:inline">BEAUTY</span>
+                <div className="lg:hidden flex flex-col items-center">
                   <span className="text-[#d4af37] text-xl sm:text-2xl font-light tracking-wider">BEAUTY</span>
                   <span className="text-[8px] text-gray-500 uppercase tracking-widest leading-none">Shop BD</span>
                 </div>
-                <div className="hidden md:flex flex-col text-[10px] text-gray-500 uppercase tracking-widest leading-none mt-1">
+                <div className="hidden lg:flex flex-col text-[10px] text-gray-500 uppercase tracking-widest leading-none mt-1">
                   <span>Shop BD</span>
                 </div>
               </Link>
             </div>
 
             {/* Desktop Search Bar and Brand Mega Menu (Hidden on Mobile) */}
-            <div className="hidden md:flex flex-1 max-w-3xl mx-6 items-center gap-6">
+            <div className="hidden lg:flex flex-1 max-w-3xl mx-6 items-center gap-6">
               {/* Brand Mega Menu Toggle */}
               <div className="relative group flex items-center h-full">
                 <div className="flex items-center text-sm font-semibold text-gray-800 cursor-pointer py-4">
@@ -193,12 +193,12 @@ const Header = () => {
             </div>
 
             {/* Icons */}
-            <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
+            <div className="flex items-center gap-2 sm:gap-4 lg:gap-6">
               <button className="flex flex-col items-center text-secondary hover:text-primary transition group">
-                <User className="w-5 h-5 md:w-6 md:h-6 mb-1 md:group-hover:-translate-y-1 transition-transform" />
-                <span className="hidden md:inline text-[10px] font-medium uppercase tracking-wider">Account</span>
+                <User className="w-5 h-5 lg:w-6 lg:h-6 mb-1 lg:group-hover:-translate-y-1 transition-transform" />
+                <span className="hidden lg:inline text-[10px] font-medium uppercase tracking-wider">Account</span>
               </button>
-              <Link to="/wishlist" className="hidden md:flex flex-col items-center text-secondary hover:text-primary transition relative group">
+              <Link to="/wishlist" className="hidden lg:flex flex-col items-center text-secondary hover:text-primary transition relative group">
                 <Heart className="w-6 h-6 mb-1 group-hover:-translate-y-1 transition-transform" />
                 {wishlistItems.length > 0 && (
                   <span className="absolute -top-1 right-0 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
@@ -211,17 +211,17 @@ const Header = () => {
                 onClick={() => setIsCartOpen(true)}
                 className="flex flex-col items-center text-secondary hover:text-primary transition relative group"
               >
-                <ShoppingBag className="w-5 h-5 md:w-6 md:h-6 mb-1 md:group-hover:-translate-y-1 transition-transform" />
+                <ShoppingBag className="w-5 h-5 lg:w-6 lg:h-6 mb-1 lg:group-hover:-translate-y-1 transition-transform" />
                 <span className="absolute -top-1 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                   {cartItems.length}
                 </span>
-                <span className="hidden md:inline text-[10px] font-medium uppercase tracking-wider">Cart</span>
+                <span className="hidden lg:inline text-[10px] font-medium uppercase tracking-wider">Cart</span>
               </button>
             </div>
           </div>
 
           {/* Mobile Search Bar (Only visible on mobile) */}
-          <div className="flex md:hidden w-full border border-purple-400 rounded-full overflow-hidden h-10 shadow-sm">
+          <div className="flex lg:hidden w-full border border-purple-400 rounded-full overflow-hidden h-10 shadow-sm">
             <input 
               type="text" 
               placeholder="Search..." 
@@ -238,7 +238,7 @@ const Header = () => {
       </div>
 
       {/* Navigation Menu Bar */}
-      <div className="bg-white text-secondary border-t border-b border-gray-100 hidden md:block">
+      <div className="bg-white text-secondary border-t border-b border-gray-100 hidden lg:block">
         <div className="container mx-auto px-4 flex items-center h-12">
           
           {/* Main Links */}
@@ -288,7 +288,7 @@ const Header = () => {
       </div>
 
       {/* Mobile Dropdown Menu (Slides from Top) */}
-      <div className={`absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-100 md:hidden overflow-hidden transition-all duration-300 ease-in-out z-50 ${isMobileMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div className={`absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-100 lg:hidden overflow-hidden transition-all duration-300 ease-in-out z-50 ${isMobileMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'}`}>
         <div className="flex flex-col overflow-y-auto max-h-[80vh]">
           <div className="py-2">
             {[

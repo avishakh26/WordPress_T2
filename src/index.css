@@ -55,7 +55,7 @@ html { scroll-behavior: smooth; }
 
 /* Hero slider: arrows only where there is room for them; swipe on phones. */
 .home-hero .swiper-button-next, .home-hero .swiper-button-prev { display: none; }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .home-hero .swiper-button-next, .home-hero .swiper-button-prev { display: flex; }
 }
 .home-hero .swiper-pagination-bullet { width: 8px; height: 8px; }

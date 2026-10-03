@@ -6,7 +6,7 @@ const MobileBottomNav = () => {
   const { cartItems, setIsCartOpen } = useCart();
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40 flex justify-around items-center py-3">
+    <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40 flex justify-around items-center py-3">
       <Link to="/" className="flex flex-col items-center text-primary">
         <Home className="w-6 h-6" />
         <span className="text-[10px] font-medium mt-1">Home</span>

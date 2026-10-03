@@ -30,7 +30,7 @@ const CategoryPage = () => {
       </div>
 
       <div className="container mx-auto px-4 py-4 md:py-8">
-        <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-8">
           {/* Filter: sidebar on desktop, drawer on phones */}
           <FilterPanel
             title="All Categories"
@@ -58,7 +58,7 @@ const CategoryPage = () => {
                 <Link to="/" className="text-primary font-medium hover:underline">← Back to Home</Link>
               </div>
             ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
                 {categoryProducts.map(product => (
                   <div key={product.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-gray-100 flex flex-col">
                     {product.oldPrice && (

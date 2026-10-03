@@ -43,7 +43,7 @@ const FilterPanel = ({ title, items, activeLabel }) => {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden md:block w-64 shrink-0">
+      <aside className="hidden lg:block w-64 shrink-0">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden sticky top-4">
           <div className="bg-primary text-white px-4 py-3 font-bold font-montserrat uppercase text-sm tracking-wider">{title}</div>
           <div className="max-h-[70vh] overflow-y-auto">{list}</div>
@@ -51,7 +51,7 @@ const FilterPanel = ({ title, items, activeLabel }) => {
       </aside>
 
       {/* Mobile: filter button + drawer */}
-      <div className="md:hidden flex items-center justify-between gap-3">
+      <div className="lg:hidden flex items-center justify-between gap-3">
         <button
           type="button"
           onClick={() => setOpen(true)}
@@ -64,7 +64,7 @@ const FilterPanel = ({ title, items, activeLabel }) => {
       </div>
 
       {open && (
-        <div className="md:hidden fixed inset-0 z-[300]" role="dialog" aria-modal="true" aria-label={title}>
+        <div className="lg:hidden fixed inset-0 z-[300]" role="dialog" aria-modal="true" aria-label={title}>
           <div className="absolute inset-0 bg-black/50" onClick={() => setOpen(false)} />
           <div className="absolute left-0 top-0 h-full w-[82%] max-w-xs bg-white shadow-2xl flex flex-col animate-[slideInLeft_.25s_ease-out]">
             <div className="bg-primary text-white px-4 py-3.5 flex items-center justify-between">

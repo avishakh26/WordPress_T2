@@ -387,7 +387,7 @@ const Delivery = () => (
 
 /* ---------- Mobile sticky buy bar ---------- */
 const StickyBar = ({ product, visible, addToCart, buyNow, quantity }) => (
-  <div className={`fixed bottom-16 inset-x-0 z-40 md:hidden bg-white border-t border-sand shadow-[0_-8px_24px_rgba(0,0,0,0.08)] px-4 py-3 flex items-center gap-2 transition-all duration-300 ${visible ? 'translate-y-0' : 'translate-y-full opacity-0 pointer-events-none'}`}
+  <div className={`fixed bottom-16 inset-x-0 z-40 lg:hidden bg-white border-t border-sand shadow-[0_-8px_24px_rgba(0,0,0,0.08)] px-4 py-3 flex items-center gap-2 transition-all duration-300 ${visible ? 'translate-y-0' : 'translate-y-full opacity-0 pointer-events-none'}`}
     aria-hidden={!visible}>
     <div className="leading-tight mr-1">
       <p className="text-xl font-bold text-ink">{fmt(product.price)}</p>
