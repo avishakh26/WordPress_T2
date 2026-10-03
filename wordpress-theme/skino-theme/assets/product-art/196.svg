@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="bg" cx=".5" cy=".38" r=".8"><stop offset="0" stop-color="hsl(47,60%,97%)"/><stop offset="1" stop-color="hsl(47,42%,88%)"/></radialGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="hsl(47,28%,86%)"/><stop offset="1" stop-color="hsl(47,35%,97%)"/></linearGradient>
+    <linearGradient id="cap" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f3c6c6"/><stop offset="1" stop-color="#c2788a"/></linearGradient>
+    <linearGradient id="bulb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="rgba(255,255,255,.55)"/><stop offset="1" stop-color="rgba(0,0,0,.08)"/></linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="190" cy="88" r="52" fill="hsl(47,60%,94%)" opacity=".8"/>
+  <ellipse cx="200" cy="338" rx="108" ry="12" fill="#000" opacity=".16" filter="url(#soft)"/>
+  
+    <rect x="178" y="206" width="44" height="126" rx="12" fill="url(#body)"/>
+    <rect x="178" y="206" width="44" height="126" rx="12" fill="hsl(47,46%,78%)" opacity=".5"/>
+    <rect x="170" y="120" width="60" height="92" rx="12" fill="url(#cap)"/>
+    <rect x="190" y="70" width="20" height="54" rx="9" fill="#2a2024"/>
+    <text x="200" y="278" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="700" letter-spacing=".5" fill="hsl(47,30%,24%)">COSRX</text>
+</svg>

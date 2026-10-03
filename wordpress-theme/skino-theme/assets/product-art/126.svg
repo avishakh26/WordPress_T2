@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="bg" cx=".5" cy=".38" r=".8"><stop offset="0" stop-color="hsl(190,60%,97%)"/><stop offset="1" stop-color="hsl(190,42%,88%)"/></radialGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="hsl(190,28%,86%)"/><stop offset="1" stop-color="hsl(190,35%,97%)"/></linearGradient>
+    <linearGradient id="cap" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#efbf9c"/><stop offset="1" stop-color="#b5683a"/></linearGradient>
+    <linearGradient id="bulb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="rgba(255,255,255,.55)"/><stop offset="1" stop-color="rgba(0,0,0,.08)"/></linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="70" cy="76" r="46" fill="hsl(190,60%,94%)" opacity=".8"/>
+  <ellipse cx="200" cy="338" rx="108" ry="12" fill="#000" opacity=".16" filter="url(#soft)"/>
+  
+    <rect x="166" y="190" width="68" height="142" rx="16" fill="url(#body)"/>
+    <rect x="166" y="190" width="68" height="142" rx="16" fill="hsl(190,46%,78%)" opacity=".5"/>
+    <rect x="178" y="196" width="8" height="120" rx="4" fill="#fff" opacity=".5"/>
+    <rect x="176" y="96" width="48" height="98" rx="12" fill="url(#cap)"/>
+    <text x="200" y="272" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" letter-spacing="1" fill="hsl(190,30%,24%)">DIOR</text>
+</svg>

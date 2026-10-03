@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="bg" cx=".5" cy=".38" r=".8"><stop offset="0" stop-color="hsl(72,60%,97%)"/><stop offset="1" stop-color="hsl(72,42%,88%)"/></radialGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="hsl(72,28%,86%)"/><stop offset="1" stop-color="hsl(72,35%,97%)"/></linearGradient>
+    <linearGradient id="cap" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f3c6c6"/><stop offset="1" stop-color="#c2788a"/></linearGradient>
+    <linearGradient id="bulb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="rgba(255,255,255,.55)"/><stop offset="1" stop-color="rgba(0,0,0,.08)"/></linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="190" cy="64" r="34" fill="hsl(72,60%,94%)" opacity=".8"/>
+  <ellipse cx="200" cy="338" rx="108" ry="12" fill="#000" opacity=".16" filter="url(#soft)"/>
+  
+    <path d="M168 330 L196 104 q4 -22 8 0 L232 330 q-24 -10 -32 -32 q-8 22 -32 32 z" fill="url(#cap)"/>
+    <path d="M196 104 L184 318 M204 104 L216 318" stroke="#fff" stroke-opacity=".4" stroke-width="3" fill="none"/>
+    <rect x="180" y="300" width="40" height="30" rx="6" fill="hsl(72,46%,78%)"/>
+</svg>

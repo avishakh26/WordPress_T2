@@ -1,0 +1,49 @@
+# Local test site:  docker compose up -d   ->   http://localhost:8080
+# Then run tools/setup-local.sh (or the commands in README.md) to install WordPress, WooCommerce and import the products.
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MYSQL_DATABASE: wp
+      MYSQL_USER: wp
+      MYSQL_PASSWORD: wp
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:php8.2-apache
+    depends_on: [db]
+    ports: ["8080:80"]
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wp
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME','http://localhost:8080');
+        define('WP_SITEURL','http://localhost:8080');
+    volumes:
+      - wpdata:/var/www/html
+      - ./skino-theme:/var/www/html/wp-content/themes/skino-theme
+      - ./import:/import:ro
+
+  wpcli:
+    image: wordpress:cli-php8.2
+    profiles: ["cli"]
+    depends_on: [db, wordpress]
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wp
+    volumes:
+      - wpdata:/var/www/html
+      - ./skino-theme:/var/www/html/wp-content/themes/skino-theme
+      - ./import:/import:ro
+      - ./tools:/tools:ro
+
+volumes:
+  dbdata:
+  wpdata:
