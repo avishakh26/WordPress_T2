@@ -174,11 +174,29 @@ function skino_wishlist_button( $product_id, $class = '' ) {
 	);
 }
 
+/** Social profile links shown in the header and footer. */
+function skino_social_url( $name ) {
+	$urls = array(
+		'facebook'  => 'https://www.facebook.com/avishakh.chakrabortty',
+		'instagram' => 'https://www.instagram.com/avishakh._.chakrabortty/',
+		'twitter'   => 'https://x.com/AvishakhC',
+	);
+	return isset( $urls[ $name ] ) ? $urls[ $name ] : '#';
+}
+
+/** Label for the account link: 'Login / Signup' for visitors, 'My Account' once logged in. */
+function skino_account_label( $short = false ) {
+	if ( is_user_logged_in() ) {
+		return $short ? __( 'Account', 'skino' ) : __( 'My Account', 'skino' );
+	}
+	return $short ? __( 'Login', 'skino' ) : __( 'Login/Signup', 'skino' );
+}
+
 function skino_social_icon( $name, $size = 16 ) {
 	$icons = array(
 		'facebook'  => '<svg xmlns="http://www.w3.org/2000/svg" width="%1$d" height="%1$d" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>',
 		'instagram' => '<svg xmlns="http://www.w3.org/2000/svg" width="%1$d" height="%1$d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>',
-		'twitter'   => '<svg xmlns="http://www.w3.org/2000/svg" width="%1$d" height="%1$d" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>',
+		'twitter'   => '<svg xmlns="http://www.w3.org/2000/svg" width="%1$d" height="%1$d" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
 	);
 	return isset( $icons[ $name ] ) ? sprintf( $icons[ $name ], $size ) : '';
 }
@@ -186,8 +204,8 @@ function skino_social_icon( $name, $size = 16 ) {
 /** Store contact details (editable in Customizer > Skino contact details). */
 function skino_contact( $key ) {
 	$defaults = array(
-		'phone'   => '+8801613681441',
-		'email'   => 'info@glamourshopbd.com',
+		'phone'   => '+8801722210508',
+		'email'   => 'avishakh88@gmail.com',
 		'address' => 'Navana Tower, Gulshan 1, Dhaka, Bangladesh',
 		'brand'   => 'BeautyShop BD',
 	);

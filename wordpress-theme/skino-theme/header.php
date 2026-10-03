@@ -31,9 +31,9 @@ $account_url  = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permali
 			</div>
 			<div class="flex items-center space-x-4">
 				<div class="flex items-center space-x-3">
-					<a href="#" class="hover:text-primary" aria-label="Facebook"><?php echo skino_social_icon( 'facebook' ); // phpcs:ignore ?></a>
-					<a href="#" class="hover:text-primary" aria-label="Instagram"><?php echo skino_social_icon( 'instagram' ); // phpcs:ignore ?></a>
-					<a href="#" class="hover:text-primary" aria-label="Twitter"><?php echo skino_social_icon( 'twitter' ); // phpcs:ignore ?></a>
+					<a href="<?php echo esc_url( skino_social_url( 'facebook' ) ); ?>" target="_blank" rel="noopener noreferrer" class="hover:text-primary" aria-label="Facebook"><?php echo skino_social_icon( 'facebook' ); // phpcs:ignore ?></a>
+					<a href="<?php echo esc_url( skino_social_url( 'instagram' ) ); ?>" target="_blank" rel="noopener noreferrer" class="hover:text-primary" aria-label="Instagram"><?php echo skino_social_icon( 'instagram' ); // phpcs:ignore ?></a>
+					<a href="<?php echo esc_url( skino_social_url( 'twitter' ) ); ?>" target="_blank" rel="noopener noreferrer" class="hover:text-primary" aria-label="X (Twitter)"><?php echo skino_social_icon( 'twitter' ); // phpcs:ignore ?></a>
 				</div>
 				<div class="border-l border-gray-300 pl-4 space-x-3">
 					<a href="<?php echo esc_url( $account_url ); ?>" class="hover:text-primary"><?php esc_html_e( 'Order Tracking', 'skino' ); ?></a>
@@ -110,7 +110,7 @@ $account_url  = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permali
 				<div class="flex items-center gap-2 sm:gap-4 lg:gap-6">
 					<a href="<?php echo esc_url( $account_url ); ?>" class="flex flex-col items-center text-secondary hover:text-primary transition group">
 						<?php skino_icon( 'User', 'w-5 h-5 lg:w-6 lg:h-6 mb-1 lg:group-hover:-translate-y-1 transition-transform' ); ?>
-						<span class="hidden lg:inline text-[10px] font-medium uppercase tracking-wider"><?php esc_html_e( 'Account', 'skino' ); ?></span>
+						<span class="hidden lg:inline text-[10px] font-medium uppercase tracking-wider"><?php echo esc_html( skino_account_label() ); ?></span>
 					</a>
 					<a href="<?php echo esc_url( $wishlist_url ); ?>" class="hidden lg:flex flex-col items-center text-secondary hover:text-primary transition relative group">
 						<?php skino_icon( 'Heart', 'w-6 h-6 mb-1 group-hover:-translate-y-1 transition-transform' ); ?>
@@ -126,22 +126,25 @@ $account_url  = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permali
 			</div>
 
 			<!-- Mobile search -->
-			<form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex lg:hidden w-full border border-purple-400 rounded-full overflow-hidden h-10 shadow-sm">
-				<input type="hidden" name="post_type" value="product">
-				<input type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php esc_attr_e( 'Search...', 'skino' ); ?>" class="flex-1 px-4 focus:outline-none text-sm">
-				<button type="submit" class="bg-purple-600 text-white px-5 flex items-center justify-center" aria-label="<?php esc_attr_e( 'Search', 'skino' ); ?>"><?php skino_icon( 'Search', 'w-4 h-4' ); ?></button>
-			</form>
+			<div class="relative lg:hidden w-full" data-search>
+				<form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex w-full border border-purple-400 rounded-full overflow-hidden h-10 shadow-sm bg-white">
+					<input type="hidden" name="post_type" value="product">
+					<input type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php esc_attr_e( 'Search...', 'skino' ); ?>" autocomplete="off" data-search-input class="flex-1 px-4 focus:outline-none text-sm">
+					<button type="submit" class="bg-purple-600 text-white px-5 flex items-center justify-center" aria-label="<?php esc_attr_e( 'Search', 'skino' ); ?>"><?php skino_icon( 'Search', 'w-4 h-4' ); ?></button>
+				</form>
+				<div data-search-results class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-100 z-[100] overflow-hidden"></div>
+			</div>
 		</div>
 	</div>
 
 	<!-- Category navigation -->
 	<div class="bg-white text-secondary border-t border-b border-gray-100 hidden lg:block">
 		<div class="container mx-auto px-4 flex items-center h-12">
-			<nav class="flex-1 flex items-center justify-between px-2 lg:px-6 text-[10px] lg:text-sm font-medium uppercase tracking-wider" aria-label="<?php esc_attr_e( 'Shop categories', 'skino' ); ?>">
-				<div class="flex items-center gap-3 lg:gap-6">
+			<nav class="flex-1 flex items-center justify-between px-0 xl:px-6 text-[10px] lg:text-[13px] xl:text-sm font-medium uppercase tracking-wider" aria-label="<?php esc_attr_e( 'Shop categories', 'skino' ); ?>">
+				<div class="flex items-center gap-3 lg:gap-4 xl:gap-6">
 					<?php foreach ( skino_nav_categories() as $label => $name ) : $url = skino_category_url( $name ); ?>
 						<div class="relative group py-3 cursor-pointer text-gray-800">
-							<a href="<?php echo esc_url( $url ); ?>" class="hover:text-primary transition flex items-center gap-1"><?php echo esc_html( $label ); ?> <?php skino_icon( 'ChevronDown', 'w-4 h-4' ); ?></a>
+							<a href="<?php echo esc_url( $url ); ?>" class="hover:text-primary transition flex items-center gap-1 whitespace-nowrap"><?php echo esc_html( $label ); ?> <?php skino_icon( 'ChevronDown', 'w-4 h-4' ); ?></a>
 							<div class="absolute top-full left-0 w-48 bg-white border border-gray-200 text-secondary shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 rounded-b-lg">
 								<ul class="py-2">
 									<li><a href="<?php echo esc_url( $url ); ?>" class="block px-4 py-2 hover:bg-orange-50 hover:text-primary transition-colors text-sm normal-case tracking-normal"><?php printf( esc_html__( 'Shop All %s', 'skino' ), esc_html( $name ) ); ?></a></li>

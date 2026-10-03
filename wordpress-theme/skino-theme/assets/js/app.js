@@ -108,12 +108,12 @@
 	document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeCart(); closeFilter(); } });
 
 	/* ------------------------------------------------------------ search suggestions */
-	var sBox = $('[data-search]');
-	if (sBox) {
+	// One box for desktop, one for phones/tablets; each gets its own suggestion list.
+	var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+	$$('[data-search]').forEach(function (sBox) {
 		var input = $('[data-search-input]', sBox);
 		var results = $('[data-search-results]', sBox);
 		var timer;
-		var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
 		input.addEventListener('input', function () {
 			clearTimeout(timer);
 			var q = input.value.trim();
@@ -134,7 +134,7 @@
 			}, 250);
 		});
 		document.addEventListener('click', function (e) { if (!sBox.contains(e.target)) results.classList.add('hidden'); });
-	}
+	});
 
 	/* ------------------------------------------------------------ wishlist (kept in this browser) */
 	var KEY = 'skino-wishlist';
@@ -206,8 +206,7 @@
 			new Swiper(hero, {
 				loop: true, slidesPerView: 1, spaceBetween: 0,
 				autoplay: { delay: 5000, disableOnInteraction: false },
-				pagination: { el: $('.swiper-pagination', hero), clickable: true },
-				navigation: { nextEl: $('.swiper-button-next', hero), prevEl: $('.swiper-button-prev', hero) }
+				pagination: { el: $('.swiper-pagination', hero), clickable: true }
 			});
 		}
 
@@ -291,6 +290,26 @@
 			main.style.transform = 'scale(2.2)';
 		});
 		stage.addEventListener('mouseleave', function () { main.style.transform = ''; });
+	}
+
+	/* ------------------------------------------------------------ login / sign up tabs */
+	var auth = $('[data-auth]');
+	if (auth) {
+		var copy = {
+			login: ['Welcome back', 'Log in to see your orders, addresses and wishlist.'],
+			register: ['Create your account', 'Sign up in seconds to track orders and save your wishlist.']
+		};
+		var showAuth = function (name) {
+			$$('[data-auth-panel]', auth).forEach(function (p) { p.hidden = p.dataset.authPanel !== name; });
+			$$('.skino-auth-tabs [data-auth-tab]', auth).forEach(function (t) { t.setAttribute('aria-selected', t.dataset.authTab === name ? 'true' : 'false'); });
+			$('[data-auth-title]', auth).textContent = copy[name][0];
+			$('[data-auth-sub]', auth).textContent = copy[name][1];
+		};
+		auth.addEventListener('click', function (e) {
+			var t = e.target.closest('[data-auth-tab]');
+			if (t) showAuth(t.dataset.authTab);
+		});
+		showAuth(location.hash === '#register' && $('[data-auth-panel="register"]', auth) ? 'register' : auth.dataset.start);
 	}
 
 	/* ------------------------------------------------------------ scroll reveal */

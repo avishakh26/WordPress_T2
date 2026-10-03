@@ -36,6 +36,32 @@ add_action( 'after_switch_theme', function () {
 	flush_rewrite_rules();
 } );
 
+/*
+ * Customer accounts. WooCommerce ships with sign-up switched off, which left "Login/Signup" with only a login form.
+ * Forced from the theme so it works on a fresh install and after a theme re-upload:
+ *  - registration form on the My Account page
+ *  - optional account creation at checkout (guest checkout stays available)
+ *  - customers choose their own password (no dependency on the welcome email reaching them)
+ */
+add_filter( 'option_woocommerce_enable_myaccount_registration', function () {
+	return 'yes';
+} );
+add_filter( 'option_woocommerce_enable_signup_and_login_from_checkout', function () {
+	return 'yes';
+} );
+add_filter( 'option_woocommerce_registration_generate_password', function () {
+	return 'no';
+} );
+add_filter( 'option_woocommerce_registration_generate_username', function () {
+	return 'yes'; // Username is created from the email address.
+} );
+
+// No digital products in this shop, so hide the empty "Downloads" tab from My Account.
+add_filter( 'woocommerce_account_menu_items', function ( $items ) {
+	unset( $items['downloads'] );
+	return $items;
+} );
+
 // Whole-taka prices, as in the React design (no ".00").
 add_filter( 'wc_get_price_decimals', '__return_zero' );
 

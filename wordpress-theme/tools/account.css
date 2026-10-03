@@ -1,0 +1,89 @@
+/* ------------------------------------------------------------------ My Account (logged in) */
+.skino-account .skino-prose a { text-decoration: none; }
+.skino-account .woocommerce { display: grid; gap: 1.5rem; align-items: start; }
+@media (min-width: 900px) { .skino-account .woocommerce { grid-template-columns: 17rem 1fr; } }
+
+.skino-account-nav { background: #fff; border: 1px solid #f1f1f4; border-radius: 1.1rem; padding: .75rem; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+@media (min-width: 900px) { .skino-account-nav { position: sticky; top: 1rem; } }
+.skino-account-user { display: flex; align-items: center; gap: .75rem; padding: .75rem .75rem 1rem; border-bottom: 1px solid #f3f4f6; margin-bottom: .5rem; }
+.skino-account-avatar { width: 2.75rem; height: 2.75rem; border-radius: 999px; background: linear-gradient(135deg, #EC4899, #a855f7); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.skino-account-name { font-weight: 700; color: #222; line-height: 1.2; margin: 0; overflow: hidden; text-overflow: ellipsis; }
+.skino-account-mail { font-size: .75rem; color: #9ca3af; margin: .15rem 0 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.skino-account-nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .15rem; }
+.skino-account-nav li a { display: flex; align-items: center; gap: .75rem; padding: .7rem .85rem; border-radius: .75rem; color: #4b5563; font-weight: 500; font-size: .93rem; transition: background .15s, color .15s; }
+.skino-account-nav li a:hover { background: #fdf2f8; color: #DB2777; }
+.skino-account-nav li.is-active a { background: #EC4899; color: #fff; box-shadow: 0 4px 12px rgba(236,72,153,.3); }
+.skino-account-nav li.woocommerce-MyAccount-navigation-link--customer-logout { margin-top: .5rem; border-top: 1px solid #f3f4f6; padding-top: .5rem; }
+.skino-account-nav li.woocommerce-MyAccount-navigation-link--customer-logout a { color: #dc2626; }
+.skino-account-nav li.woocommerce-MyAccount-navigation-link--customer-logout a:hover { background: #fef2f2; color: #b91c1c; }
+@media (max-width: 899px) {
+  .skino-account-user { display: none; }
+  .skino-account-nav { padding: .5rem; overflow-x: auto; }
+  .skino-account-nav ul { display: flex; gap: .4rem; }
+  .skino-account-nav li a { white-space: nowrap; padding: .55rem .9rem; background: #f9fafb; }
+  .skino-account-nav li.woocommerce-MyAccount-navigation-link--customer-logout { margin: 0; border: 0; padding: 0; }
+}
+
+.skino-account .woocommerce-MyAccount-content { background: #fff; border: 1px solid #f1f1f4; border-radius: 1.1rem; padding: 1.25rem; margin: 0; box-shadow: 0 1px 3px rgba(0,0,0,.04); min-width: 0; }
+@media (min-width: 768px) { .skino-account .woocommerce-MyAccount-content { padding: 1.75rem; } }
+
+/* Dashboard */
+.skino-welcome { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem; border-radius: 1rem; color: #fff; background: linear-gradient(120deg, #EC4899 0%, #a855f7 100%); }
+.skino-welcome-hi { margin: 0; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+.skino-welcome-name { margin: .15rem 0 .25rem; font-size: 1.6rem; font-weight: 700; color: #fff !important; }
+.skino-welcome-sub { margin: 0; opacity: .9; font-size: .92rem; }
+.skino-welcome-cta { display: inline-flex; align-items: center; gap: .5rem; background: #fff; color: #DB2777 !important; font-weight: 700; padding: .65rem 1.2rem; border-radius: 999px; font-size: .9rem; transition: transform .15s; }
+.skino-welcome-cta:hover { transform: translateY(-2px); }
+.skino-tiles { display: grid; gap: .85rem; grid-template-columns: repeat(2, 1fr); margin: 1.25rem 0; }
+@media (min-width: 1100px) { .skino-tiles { grid-template-columns: repeat(4, 1fr); } }
+.skino-tile { display: flex; flex-direction: column; gap: .2rem; padding: 1rem; border: 1px solid #f1f1f4; border-radius: .9rem; background: #fff; transition: box-shadow .2s, transform .2s, border-color .2s; }
+.skino-tile:hover { box-shadow: 0 8px 22px rgba(0,0,0,.08); transform: translateY(-2px); border-color: #fbcfe8; }
+.skino-tile-icon { width: 2.6rem; height: 2.6rem; border-radius: .75rem; background: #fdf2f8; color: #EC4899; display: flex; align-items: center; justify-content: center; margin-bottom: .45rem; }
+.skino-tile-title { font-weight: 700; color: #222; }
+.skino-tile-text { font-size: .78rem; color: #9ca3af; line-height: 1.35; }
+.skino-recent-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: .75rem; }
+.skino-recent-head h3 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+.skino-recent-head a { font-size: .85rem; color: #DB2777; font-weight: 600; }
+.skino-order-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.skino-order-list li a { display: grid; grid-template-columns: 1fr auto; gap: .35rem 1rem; align-items: center; padding: .85rem 1rem; border: 1px solid #f1f1f4; border-radius: .8rem; transition: background .15s; }
+.skino-order-list li a:hover { background: #fafafa; }
+@media (min-width: 640px) { .skino-order-list li a { grid-template-columns: 1fr auto 7rem; } }
+.skino-order-no { margin: 0; font-weight: 700; color: #222; }
+.skino-order-date { margin: .1rem 0 0; font-size: .78rem; color: #9ca3af; }
+.skino-order-total { text-align: right; color: #222; }
+.skino-empty { text-align: center; padding: 2rem 1rem; border: 1px dashed #e5e7eb; border-radius: .9rem; color: #9ca3af; }
+.skino-badge { display: inline-block; justify-self: start; padding: .2rem .65rem; border-radius: 999px; font-size: .72rem; font-weight: 700; background: #f3f4f6; color: #4b5563; }
+.skino-badge-completed { background: #dcfce7; color: #166534; }
+.skino-badge-processing { background: #dbeafe; color: #1e40af; }
+.skino-badge-on-hold, .skino-badge-pending { background: #fef3c7; color: #92400e; }
+.skino-badge-cancelled, .skino-badge-failed, .skino-badge-refunded { background: #fee2e2; color: #991b1b; }
+
+/* Orders table, addresses, order view, account forms */
+.skino-account .woocommerce-MyAccount-content > h2, .skino-account .woocommerce-MyAccount-content h3 { font-size: 1.15rem; font-weight: 700; margin: 0 0 1rem; }
+.skino-account .woocommerce-orders-table, .skino-account .shop_table { border: 0; }
+.skino-account .woocommerce-orders-table thead th, .skino-account .shop_table thead th { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: #9ca3af; border-bottom: 1px solid #f1f1f4; }
+.skino-account .woocommerce-orders-table td, .skino-account .shop_table td, .skino-account .shop_table th { padding: .85rem .5rem; }
+.skino-account .woocommerce-orders-table .button, .skino-account .woocommerce-button { padding: .45rem 1rem; border-radius: 999px; font-size: .8rem; color: #fff !important; text-decoration: none !important; }
+@media (max-width: 640px) {
+  .skino-account .woocommerce-orders-table thead { display: none; }
+  .skino-account .woocommerce-orders-table tr { display: grid; gap: .25rem; padding: .85rem 0; border-bottom: 1px solid #f1f1f4; }
+  .skino-account .woocommerce-orders-table td { display: flex; justify-content: space-between; padding: .15rem 0; border: 0; }
+  .skino-account .woocommerce-orders-table td::before { content: attr(data-title); color: #9ca3af; font-size: .8rem; }
+}
+.skino-account .woocommerce-Addresses { display: grid; gap: 1rem; }
+@media (min-width: 700px) { .skino-account .woocommerce-Addresses { grid-template-columns: 1fr 1fr; } }
+.skino-account .woocommerce-Address { border: 1px solid #f1f1f4; border-radius: .9rem; padding: 1.1rem; }
+.skino-account .woocommerce-Address-title { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; margin-bottom: .5rem; }
+.skino-account .woocommerce-Address-title h2 { font-size: 1.05rem; font-weight: 700; margin: 0; }
+.skino-account .woocommerce-Address-title .edit { color: #DB2777; font-size: .85rem; font-weight: 600; }
+.skino-account address { font-style: normal; color: #6b7280; line-height: 1.6; }
+.skino-account .woocommerce-EditAccountForm fieldset { border: 1px solid #f1f1f4; border-radius: .9rem; padding: 1rem 1.1rem; margin: 1rem 0; }
+.skino-account .woocommerce-EditAccountForm legend { font-weight: 700; padding: 0 .4rem; }
+.skino-account .woocommerce-EditAccountForm .form-row-first, .skino-account .woocommerce-EditAccountForm .form-row-last { width: 100%; }
+.skino-account .woocommerce-EditAccountForm button.button { margin-top: .5rem; }
+.skino-account mark { background: #fdf2f8; color: #DB2777; padding: .05rem .35rem; border-radius: .3rem; }
+.skino-account .woocommerce-message, .skino-account .woocommerce-info { margin-bottom: 1rem; }
+
+/* The generic content-list style must not add bullets or indents inside the account area */
+.skino-account .skino-prose ul, .skino-account .skino-prose ol { list-style: none; padding-left: 0; margin-bottom: 0; }
+.skino-account .skino-prose li { margin: 0; }

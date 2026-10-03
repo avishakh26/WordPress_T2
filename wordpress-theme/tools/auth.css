@@ -1,0 +1,21 @@
+/* ------------------------------------------------------------------ Login / sign up card */
+.skino-auth { max-width: 28rem; margin: 0 auto; background: #fff; border: 1px solid #f1f1f4; border-radius: 1.25rem; padding: 1.75rem 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,.06); }
+@media (min-width: 640px) { .skino-auth { padding: 2.25rem 2.25rem; } }
+.skino-auth-head { text-align: center; margin-bottom: 1.25rem; }
+.skino-auth-head h2 { font-size: 1.5rem; font-weight: 700; margin: 0 0 .3rem; color: #222; }
+.skino-auth-head p { margin: 0; color: #9ca3af; font-size: .9rem; }
+.skino-auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: .25rem; padding: .25rem; background: #f3f4f6; border-radius: 999px; margin-bottom: 1.4rem; }
+.skino-auth-tabs button { padding: .6rem 1rem; border-radius: 999px; font-weight: 600; font-size: .92rem; color: #6b7280; background: transparent; transition: background .2s, color .2s, box-shadow .2s; }
+.skino-auth-tabs button[aria-selected="true"] { background: #fff; color: #EC4899; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+.skino-auth-panel[hidden] { display: none; }
+.skino-auth-panel .form-row { margin-bottom: 1rem; }
+.skino-auth-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; margin: .25rem 0 1.1rem; font-size: .88rem; }
+.skino-auth-row label { display: inline-flex; align-items: center; gap: .4rem; margin: 0; color: #4b5563; }
+.skino-auth-link { color: #DB2777; font-weight: 600; text-decoration: none; }
+.skino-auth-link:hover { text-decoration: underline; }
+.skino-auth .woocommerce-form-login__submit, .skino-auth .woocommerce-form-register__submit { width: 100%; padding: .9rem 1rem; font-size: 1rem; margin-top: .25rem; }
+.skino-auth-switch { text-align: center; margin: 1.1rem 0 0; font-size: .9rem; color: #6b7280; }
+.skino-auth-switch button { color: #DB2777; font-weight: 700; background: none; padding: 0; }
+.skino-auth-switch button:hover { text-decoration: underline; }
+.skino-auth .woocommerce-privacy-policy-text { font-size: .75rem; color: #9ca3af; margin: .5rem 0 1rem; }
+.skino-auth .woocommerce-privacy-policy-text a { color: #DB2777; }

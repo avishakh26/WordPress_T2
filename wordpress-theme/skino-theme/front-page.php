@@ -8,9 +8,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 
 $heroes = array(
-	array( 'hero2.jpg', 'Premium skincare collection' ),
-	array( 'hero3.jpg', 'Premium cosmetics' ),
-	array( 'hero4.jpg', 'Luxury fragrances' ),
+	array( 'hero-1.jpg', 'Beauty Shop BD: lipsticks, serums, perfumes and facewashes' ),
+	array( 'hero-2.jpg', 'Discover your radiant beauty: curated women\'s beauty products' ),
+	array( 'hero-3.jpg', 'Beauty that feels like you' ),
 );
 
 $categories = array(
@@ -101,25 +101,22 @@ $render_slide = function ( $product ) {
 
 	<!-- Hero slider -->
 	<section class="w-full">
-		<div class="swiper home-hero aspect-[1717/916] lg:aspect-auto lg:h-[500px]" data-hero-swiper>
+		<div class="swiper home-hero aspect-[1024/380]" data-hero-swiper>
 			<div class="swiper-wrapper">
 				<?php foreach ( $heroes as $i => $hero ) : ?>
 					<div class="swiper-slide">
 						<div class="relative w-full h-full overflow-hidden bg-gray-100">
-							<img src="<?php echo esc_url( skino_asset( 'img/' . $hero[0] ) ); ?>" alt="<?php echo esc_attr( $hero[1] ); ?>" class="absolute inset-0 h-full w-full object-cover"<?php echo 0 === $i ? ' fetchpriority="high"' : ' loading="lazy"'; ?>>
-							<div class="absolute inset-0 lg:bg-black/25"></div>
+							<img src="<?php echo esc_url( skino_asset( 'img/' . $hero[0] ) ); ?>" alt="<?php echo esc_attr( $hero[1] ); ?>" class="absolute inset-0 h-full w-full object-cover"<?php echo 0 === $i ? ' fetchpriority="high"' : ''; ?>>
 						</div>
 					</div>
 				<?php endforeach; ?>
 			</div>
 			<div class="swiper-pagination"></div>
-			<div class="swiper-button-prev"></div>
-			<div class="swiper-button-next"></div>
 		</div>
 	</section>
 
 	<!-- Categories -->
-	<section class="py-6 border-b border-gray-100">
+	<section class="py-6">
 		<div class="container mx-auto px-2 md:px-4">
 			<h2 class="text-[17px] md:text-2xl font-extrabold text-[#003366] mb-6 md:mb-8 text-center uppercase tracking-wide"><?php esc_html_e( 'EXPLORE PRODUCT BY CATEGORY', 'skino' ); ?></h2>
 			<div class="grid grid-cols-3 gap-2 sm:gap-3 md:grid-cols-6 md:gap-4 lg:flex lg:gap-8 pb-4 justify-center px-1">

@@ -20,7 +20,7 @@ $cats       = array( 'Makeup', 'Skin Care', 'Hair Care', 'Fragrance', 'Body Care
 				<p class="mb-6 text-sm leading-relaxed"><?php echo esc_html( $brand_name ); ?> is your ultimate destination for authentic and branded cosmetics, skincare, and beauty products in Bangladesh. We bring you the best globally.</p>
 				<div class="flex space-x-4">
 					<?php foreach ( array( 'facebook', 'instagram', 'twitter' ) as $s ) : ?>
-						<a href="#" aria-label="<?php echo esc_attr( ucfirst( $s ) ); ?>" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors text-white"><?php echo skino_social_icon( $s, 20 ); // phpcs:ignore ?></a>
+						<a href="<?php echo esc_url( skino_social_url( $s ) ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( 'twitter' === $s ? 'X (Twitter)' : ucfirst( $s ) ); ?>" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors text-white"><?php echo skino_social_icon( $s, 20 ); // phpcs:ignore ?></a>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -86,7 +86,7 @@ $cats       = array( 'Makeup', 'Skin Care', 'Hair Care', 'Fragrance', 'Body Care
 		<span data-cart-count class="absolute -top-1 right-2 bg-accent text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center"><?php echo (int) skino_cart_count(); ?></span>
 		<span class="text-[10px] font-medium mt-1"><?php esc_html_e( 'Cart', 'skino' ); ?></span>
 	</button>
-	<a href="<?php echo esc_url( $account ); ?>" class="flex flex-col items-center text-textMuted hover:text-primary"><?php skino_icon( 'User', 'w-6 h-6' ); ?><span class="text-[10px] font-medium mt-1"><?php esc_html_e( 'Account', 'skino' ); ?></span></a>
+	<a href="<?php echo esc_url( $account ); ?>" class="flex flex-col items-center text-textMuted hover:text-primary"><?php skino_icon( 'User', 'w-6 h-6' ); ?><span class="text-[10px] font-medium mt-1"><?php echo esc_html( skino_account_label( true ) ); ?></span></a>
 </nav>
 
 <!-- Floating cart button (desktop) -->

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./account.css";
+@import "./auth.css";
 
 /* Tailwind scans the theme's PHP and JS for class names. */
 @source "../skino-theme/**/*.php";
@@ -48,11 +50,7 @@ html { scroll-behavior: smooth; }
 /* Custom logo from the Customizer */
 .custom-logo-link img { max-height: 48px; width: auto; }
 
-/* Hero slider: arrows only where there is room for them; swipe on phones. */
-.home-hero .swiper-button-next, .home-hero .swiper-button-prev { display: none; }
-@media (min-width: 1024px) {
-  .home-hero .swiper-button-next, .home-hero .swiper-button-prev { display: flex; }
-}
+/* Hero slider: no side arrows (dots + swipe only). */
 .home-hero .swiper-pagination-bullet { width: 8px; height: 8px; }
 
 /* Latest / Best selling tabs */
@@ -135,9 +133,6 @@ form.woocommerce-checkout { display: grid; gap: 2rem; }
 .woocommerce table.shop_table th, .woocommerce table.shop_table td { padding: .75rem .5rem; border-bottom: 1px solid #f3f4f6; text-align: left; }
 .woocommerce .cart_totals { margin-top: 1.5rem; max-width: 26rem; margin-left: auto; }
 .woocommerce .quantity input.qty { width: 4.5rem; padding: .5rem; border: 1px solid #e5e7eb; border-radius: .5rem; }
-.woocommerce-MyAccount-navigation ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
-.woocommerce-MyAccount-navigation a { display: inline-block; padding: .4rem .9rem; border-radius: 999px; background: #f3f4f6; font-size: .85rem; }
-.woocommerce-MyAccount-navigation .is-active a { background: #EC4899; color: #fff; }
 
 /* Pagination */
 .woocommerce-pagination ul, .nav-links { list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; padding: 0; }
@@ -168,3 +163,22 @@ form.woocommerce-checkout { display: grid; gap: 2rem; }
 .skino-reviews .form-submit input[type=submit]:hover { background: #8a6a31; }
 .skino-reviews textarea, .skino-reviews input[type=text], .skino-reviews input[type=email] { width: 100%; padding: .7rem 1rem; border: 1px solid #2b242033; border-radius: .75rem; background: #fff; }
 .screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* My Account: login and register side by side */
+.woocommerce-account .u-columns.col2-set, .woocommerce-account .col2-set { display: grid; gap: 1.5rem; }
+@media (min-width: 768px) {
+  .woocommerce-account .u-columns.col2-set, .woocommerce-account .col2-set { grid-template-columns: 1fr 1fr; }
+}
+.woocommerce-account .col2-set > div { background: #fff; border: 1px solid #f3f4f6; border-radius: 1rem; padding: 1.25rem 1.5rem; }
+.woocommerce-account .col2-set h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+.woocommerce-form-login .woocommerce-form__label-for-checkbox { display: inline-flex; align-items: center; gap: .4rem; margin: .25rem 0 1rem; }
+.woocommerce-form-login__submit, .woocommerce-form-register__submit { width: 100%; margin-top: .5rem; }
+.woocommerce-LostPassword { margin-top: 1rem; }
+.woocommerce-LostPassword a, .woocommerce-account a.woocommerce-button { text-decoration: underline; }
+.woocommerce-password-strength { margin-top: .4rem; font-size: .8rem; padding: .25rem .5rem; border-radius: .4rem; }
+.woocommerce-password-strength.short, .woocommerce-password-strength.bad { background: #fef2f2; color: #991b1b; }
+.woocommerce-password-strength.good { background: #fffbeb; color: #92400e; }
+.woocommerce-password-strength.strong { background: #f0fdf4; color: #166534; }
+.woocommerce-account .show-password-input { display: none; }
+.woocommerce-account .password-input { display: block; }
+.woocommerce-MyAccount-content { margin-top: 1rem; }
